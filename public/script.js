@@ -1,9 +1,9 @@
 function changeChannel(channel) {
     // Define the radio stream URLs for each channel
     var streamUrls = {
-        '1': 'http://jenny.torontocast.com:8142/stream/1/',
-        '2': 'http://sc4.easywebcommunications.com:18022/stream/1/',
-        '3': 'http://158.69.114.190:8024/stream'
+        '1': 'https://eu10.fastcast4u.com:8120/stream/1/',
+        '2': 'https://ssl1.viastreaming.net:7005/stream/1/',
+        '3': 'https://kathy.torontocast.com:2800/stream/1/'
     };
 
     // Define the background colors for each channel
