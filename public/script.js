@@ -1,4 +1,10 @@
-function changeChannel(channel) {
+// Keep track of the current channel
+var currentChannel = 0;
+
+function changeChannel() {
+    // Increment the current channel, then use modulo to wrap back to 1 after 3
+    currentChannel = (currentChannel % 3) + 1;
+
     // Define the radio stream URLs for each channel
     var streamUrls = {
         '1': 'https://eu10.fastcast4u.com:8120/stream/1/',
@@ -14,14 +20,14 @@ function changeChannel(channel) {
     };
 
     // Change the background color
-    document.body.style.backgroundColor = colors[channel];
+    document.body.style.backgroundColor = colors[currentChannel];
     
     // Get the player div
     var playerDiv = document.getElementById('player');
 
     // Create the audio element for the radio player
     var playerAudio = document.createElement('audio');
-    playerAudio.setAttribute('src', streamUrls[channel]);
+    playerAudio.setAttribute('src', streamUrls[currentChannel]);
     playerAudio.setAttribute('controls', '');
     playerAudio.setAttribute('autoplay', '');
     playerAudio.style.display = 'none';  // This hides the audio player
@@ -34,4 +40,3 @@ function changeChannel(channel) {
     // Add the new audio element to the player div
     playerDiv.appendChild(playerAudio);
 }
-

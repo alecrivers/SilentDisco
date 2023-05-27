@@ -8,28 +8,6 @@ body {
     align-items: center;
     height: 100vh;
     transition: background-color 0.5s;
-}
-
-#app {
-    text-align: center;
-}
-
-.channel-button {
-    margin: 10px;
-    padding: 50px;
-    border: 2px solid black;
-    border-radius: 50%;
-}
-
-#channel1 {
-    background-color: red;
-}
-
-#channel2 {
-    background-color: green;
-}
-
-#channel3 {
-    background-color: blue;
+    cursor: pointer; /* Changes the cursor to a hand when you hover over the page */
 }
 
