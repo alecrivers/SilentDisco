@@ -92,7 +92,9 @@ function handleFade() {
         else
             fadeStates[i] = Math.max(fadeStates[i] - fadeStep, -1.1);
         if(i == 0) {
-            document.getElementById('landing-page').style.opacity = clamp(fadeStates[i], 0.0, 1.0);
+            let opacity = clamp(fadeStates[i], 0.0, 1.0);
+            document.getElementById('landing-page').style.opacity = opacity;
+            document.getElementById('landing-page').style.display = (opacity > 0) ? "block" : "none";
         }
         else {
             let player = players[i];
