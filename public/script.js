@@ -1,9 +1,9 @@
 // Define the radio stream URLs for each channel
 var streamUrls = {
-        '1': 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',	// funk
-        '2': 'https://playerservices.streamtheworld.com/api/livestream-redirect/SMOOTH953_AAC48.aac', // current hits
-        '3': 'https://streams.radiomast.io:443/0cef93cd-5974-43b1-868e-c739e81f4f2b',	// b&c, strong
-        '4': 'https://eu10.fastcast4u.com:2650/stream/1/',	// b&c, mellow
+        '1': 'https://eu10.fastcast4u.com:2650/stream/1/',	// b&c, mellow
+        '2': 'https://streams.radiomast.io:443/0cef93cd-5974-43b1-868e-c739e81f4f2b',	// b&c, strong
+        '3': 'https://playerservices.streamtheworld.com/api/livestream-redirect/SMOOTH953_AAC48.aac', // current hits
+        '4': 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',	// funk
         '5': 'https://sonic.portalfoxmix.cl/8002/stream', // classics
         '6': 'https://ors.cdnstream1.com/5214_128', // 80s
         '7': 'https://listen.181fm.com/181-oldschool_128k.mp3', // classic hip hop
@@ -15,8 +15,8 @@ var streamUrls = {
 
 // Define the background colors for each channel
 var colors = {
-    '1': 'red',	// red
-    '2': '#bfef45',	// lime
+    '1': '#bfef45',	// lime
+    '2': 'red',		// red
     '3': '#42d4f4',	// cyan,
     '4': '#f04a00',	// orange
     '5': '#fffac8',	// yellow / beige
