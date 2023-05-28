@@ -1,29 +1,39 @@
 // Define the radio stream URLs for each channel
 var streamUrls = {
-        '1': 'https://eu10.fastcast4u.com:8120/stream/1/',
-        '2': 'https://air.broadcastinggroup.ro/MegaHit',
-        '3': 'https://s3.slotex.pl:7354/stream/1/'
+        '1': 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',	// funk
+        '2': 'https://playerservices.streamtheworld.com/api/livestream-redirect/SMOOTH953_AAC48.aac', // current hits
+        '3': 'https://streams.radiomast.io:443/0cef93cd-5974-43b1-868e-c739e81f4f2b',	// b&c, strong
+        '4': 'https://eu10.fastcast4u.com:2650/stream/1/',	// b&c, mellow
+        '5': 'https://sonic.portalfoxmix.cl/8002/stream', // classics
+        '6': 'https://ors.cdnstream1.com/5214_128', // 80s
+        '7': 'https://listen.181fm.com/181-oldschool_128k.mp3', // classic hip hop
+        '8': 'https://strm112.1.fm/latino_mobile_mp3', // modern spanish
+        '9': 'https://radio.metal-invasion.fr/radio/8000/stream.mp3', // death metal
+        '10': 'https://mp3channels.webradio.antenne.de/punkrock', // "crazy taxi"-ish
+        '11': 'https://jazzradio.ice.infomaniak.ch/jazz-wr04-128.mp3', // electroswing
 };
 
 // Define the background colors for each channel
 var colors = {
-    '1': 'red',
-    '2': 'green',
-    '3': 'blue'
+    '1': 'red',	// red
+    '2': '#bfef45',	// lime
+    '3': '#42d4f4',	// cyan,
+    '4': '#f04a00',	// orange
+    '5': '#fffac8',	// yellow / beige
+    '6': '#800000',	// maroon
+    '7': '#000075', 	// navy
+    '8': '#911eb4', 	// purple
+    '9': '#000000',	// black
+    '10': '#a9a9a9',	// gray
+    '11': '#f032e6',	// pink
 };
 
 // Define the players for each channel
 var players = {
-    '1': null,
-    '2': null,
-    '3': null
 };
 
 var fadeStates = {
-    '0': 1.0,	// The landing page fade state
-    '1': -1,
-    '2': -1,
-    '3': -1
+    '0': 1.0	// The landing page fade state
 };
 
 // Initialize the current channel to 1
@@ -37,6 +47,12 @@ function startDisco() {
     //document.getElementById('landing-page').style.display = 'none';
 
     console.log("Initializing...");
+    
+    // Create variables
+    for (let i = 1; i <= numChannels; i++) {
+    	fadeStates[i.toString()] = -1;
+    	players[i.toString()] = null;
+    }
     
     // Show the player
     document.getElementById('player').style.display = 'block';
@@ -81,10 +97,10 @@ function handleFade() {
         else {
             let player = players[i];
             player.volume = clamp(fadeStates[i], 0.0, 1.0);
-            status += i + ": " + fadeStates[i] + " ~ " + player.volume + "   "
+            //status += i + ": " + fadeStates[i] + " ~ " + player.volume + "   "
         }
     }
-    console.log(status);
+    //console.log(status);
 }
 
 function changeChannel() {
@@ -94,7 +110,7 @@ function changeChannel() {
     }
 
     // Increment the current channel, then use modulo to wrap back to 1 after 3
-    currentChannel = ((currentChannel % 3) + 1).toString();
+    currentChannel = ((currentChannel % numChannels) + 1).toString();
     
     console.log("Changed channel to " + currentChannel);
 
