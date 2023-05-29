@@ -1,10 +1,11 @@
 body {
     font-family: Arial, sans-serif;
+    font-size: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     padding: 0 20px;
     box-sizing: border-box;
     text-align: center;
@@ -23,5 +24,41 @@ button {
 }
 img {
     margin-bottom: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.button-container {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px; /* creates a 10px gap between items */
+}
+
+.start-button {
+    font-size: 1.0em;
+    padding: 10px;
+    background-color: #aaffaa;
+    color: black;  /* Sets the text color to white */
+}
+
+/* Increase the font size and the button size on screens smaller than 600px */
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 1.5em;
+    }
+
+.button-container {
+    font-size: 2.0em;
+}
+
+.start-button {
+    font-size: 1.5em;
+}
+
 }
 

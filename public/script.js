@@ -15,6 +15,7 @@ var streamUrls = {
 
 // Define the background colors for each channel
 var colors = {
+    '0': 'white',
     '1': '#bfef45',	// lime
     '2': 'red',		// red
     '3': '#42d4f4',	// cyan,
@@ -37,55 +38,73 @@ var fadeStates = {
 };
 
 // Initialize the current channel to 1
-var currentChannel = '1';
+var currentChannel = '0';
 var numChannels = Object.keys(streamUrls).length;
 // Define a step for fading (e.g. over 1 second)
 var fadeStep = 0.2;
+var initialized = false;
 
 function startDisco() {
     // Hide the landing page content
     //document.getElementById('landing-page').style.display = 'none';
-
-    console.log("Initializing...");
     
-    // Create variables
-    for (let i = 1; i <= numChannels; i++) {
-    	fadeStates[i.toString()] = -1;
-    	players[i.toString()] = null;
+    if(initialized == false) {
+	    console.log("Initializing...");
+	    
+	    // Create variables
+	    for (let i = 1; i <= numChannels; i++) {
+	    	fadeStates[i.toString()] = -1;
+	    	players[i.toString()] = null;
+	    }
+	    
+	    // Show the player
+	    document.getElementById('player').style.display = 'block';
+	    
+	    // Get the player div
+	    var playerDiv = document.getElementById('player');
+
+	    // For each channel, create an audio element for the radio player and add it to the player div
+	    for (var channel in streamUrls) {
+		var playerAudio = document.createElement('audio');
+		playerAudio.setAttribute('src', streamUrls[channel]);
+		playerAudio.setAttribute('controls', '');
+		playerAudio.setAttribute('autoplay', '');
+		playerAudio.style.display = 'none';  // This hides the audio player
+		playerAudio.volume = 0;
+		playerDiv.appendChild(playerAudio);
+		players[channel] = playerAudio;
+	    }
+    
+	    // Add an event listener to the body that responds to click events
+	    document.body.addEventListener('click', changeChannel);
+    
+	    // Start the fade system
+	    setInterval(handleFade, 50);
+	    
+	    initialized = true;
     }
     
-    // Show the player
-    document.getElementById('player').style.display = 'block';
-    
-    // Get the player div
-    var playerDiv = document.getElementById('player');
-
-    // For each channel, create an audio element for the radio player and add it to the player div
-    for (var channel in streamUrls) {
-        var playerAudio = document.createElement('audio');
-        playerAudio.setAttribute('src', streamUrls[channel]);
-        playerAudio.setAttribute('controls', '');
-        playerAudio.setAttribute('autoplay', '');
-        playerAudio.style.display = 'none';  // This hides the audio player
-        playerAudio.volume = 0;
-        playerDiv.appendChild(playerAudio);
-        players[channel] = playerAudio;
-    }
+    // Set us to channel 1
+    currentChannel = "1";
 
     // Set the initial background color
     document.body.style.backgroundColor = colors[currentChannel];
-    
-    // Add an event listener to the body that responds to click events
-    document.body.addEventListener('click', changeChannel);
-    
-    // Start the fade system
-    setInterval(handleFade, 50);
+
+    // Push a new state to the history
+    history.pushState({ page: "disco" }, "", window.location.pathname);
 }
+
+// When the history changes...
+window.addEventListener("popstate", function(event) {
+    // For now assume we're going back to the main state.
+    currentChannel = "0";
+    document.body.style.backgroundColor = colors[currentChannel];
+});
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
 function handleFade() {
-   let status = ''
+   let status = '';
    for (let i = 0; i <= numChannels; i++) {
         if(i.toString() == currentChannel)
             fadeStates[i] = Math.min(fadeStates[i] + fadeStep, 1.0);

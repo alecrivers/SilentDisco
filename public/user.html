@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Silent Disco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -9,11 +10,16 @@
         <h1>Welcome to the Silent Disco!</h1>
         <p>Here's how it works: When you click the button below, you'll start hearing music. Click anywhere to change the channel. Each channel has its own color. Anyone else who is on the same channel will hear the same music you're listening to!</p>
         <p><b>NOTE:</b> When you first start listening, you may hear an ad, or a couple seconds of silence. Give it a few seconds, or just change the channel, and the music will start!</p>
+        <div class="button-container">
+	    <span role="img" aria-label="Woman Dancing">💃</span>
+	    <button class="start-button" onclick="startDisco()">Start Discoing!</button>
+	    <span role="img" aria-label="Man Dancing">🕺</span>
+	</div>
+	<p>Show this QR code to a friend to let them join the party.</p>
         <img src="qrcode.png" alt="QR code">
-        <p>Show this QR code to a friend to let them join the party.</p>
-        <button onclick="startDisco()">Start Discoing!</button>
     </div>
     <div id="player" style="display: none;"></div>
     <script src="script.js"></script>
 </body>
 </html>
+
