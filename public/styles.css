@@ -11,19 +11,43 @@ body {
     text-align: center;
     transition: background-color 0.5s;
 }
-h1 {
-    margin-bottom: 20px;
+
+#logo {
+    width: 500px; /* Adjust this value as needed for desktop */
 }
-p {
-    margin-bottom: 20px;
+
+#instructions ul {
+    list-style: none;
+    padding: 0;
 }
+
+#instructions li {
+    display: flex;
+    align-items: flex-start;
+}
+
+#instructions li::before {
+    content: "➪ ";
+    color: magenta;
+    margin-right: 0.5em; /* adjust as needed */
+}
+
+#instructions {
+    list-style-type: none; /* Removes the default bullet points */
+    text-align: left;
+}
+
+#qr-code {
+    display: block;
+    margin: auto;
+    width: 200px; /* Adjust this value as needed */
+    padding: 20px;
+}
+
 button {
     padding: 10px 20px;
     font-size: 20px;
     cursor: pointer;
-}
-img {
-    margin-bottom: 20px;
 }
 
 body {
@@ -46,11 +70,30 @@ body {
     color: black;  /* Sets the text color to white */
 }
 
+.svg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.svg-icon {
+  position: absolute;
+  width: 100px; /* Adjust based on your needs */
+  height: 100px; /* Adjust based on your needs */
+  opacity: 0;
+  transition: opacity 1s; /* Adjust the transition time if necessary */
+}
+
 /* Increase the font size and the button size on screens smaller than 600px */
 @media screen and (max-width: 600px) {
     body {
         font-size: 1.5em;
     }
+    #logo {
+        width: 90vw;
+    }
+}
 
 .button-container {
     font-size: 1.75em;

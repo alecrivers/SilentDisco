@@ -7,17 +7,21 @@
 </head>
 <body>
     <div id="landing-page">
-        <h1>Welcome to the Free Silent Disco!</h1>
-        <p>Click below to start, then click anywhere to change the channel. Each channel has its own color. Anyone else who is on the same channel will hear the same music you're listening to!</p>
+        <img id="logo" src="images/logo.svg">
+        <ul id="instructions">
+	       	<li>Click anywhere to change the channel!</li>
+		<li>Anyone else who is on the same channel will hear the same music you're listening to!</li>
+		<li>Use the QR code below to invite friends!</li>
+	<p>
         <div class="button-container">
 	    <span role="img" aria-label="Woman Dancing">💃</span>
 	    <button class="start-button" onclick="startDisco()">Dance!</button>
 	    <span role="img" aria-label="Man Dancing">🕺</span>
 	</div>
-	<p>Show this QR code to a friend to let them join the party:</p>
-        <img src="qrcode.png" alt="QR code">
+        <img id="qr-code" src="images/qrcode.png" alt="QR code">
     </div>
-    <div id="player" style="display: none;"></div>
+    <div id="svg-container" class="svg-container"/>
+    <div id="player" style="display: none;"/>
     <script src="script.js"></script>
 </body>
 </html>
