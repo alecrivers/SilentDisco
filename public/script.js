@@ -2,9 +2,10 @@
 var streamUrls = {
         '1': 'https://eu10.fastcast4u.com:2650/stream/1/',	// b&c, mellow
         '2': 'https://streams.radiomast.io:443/0cef93cd-5974-43b1-868e-c739e81f4f2b',	// b&c, strong
-        '3': 'https://playerservices.streamtheworld.com/api/livestream-redirect/SMOOTH953_AAC48.aac', // current hits
+        //'3': 'https://media.xseu.net:5443/MegaHit_m',	// Next try at hits.
+        '3': 'https://rfcmedia.streamguys1.com/newpophits.mp3', // Frome TuneIn. Pop Hits.
         '4': 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',	// funk
-        '5': 'https://sonic.portalfoxmix.cl/8002/stream', // classics
+        '5': 'https://broadcast.miami/proxy/thediscopalace?mp=/stream/', // disco, I hope?
         '6': 'https://ors.cdnstream1.com/5214_128', // 80s
         '7': 'https://listen.181fm.com/181-oldschool_128k.mp3', // classic hip hop
         '8': 'https://strm112.1.fm/latino_mobile_mp3', // modern spanish
