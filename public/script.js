@@ -9,7 +9,7 @@ var streamUrls = {
         '6': 'https://ors.cdnstream1.com/5214_128', // 80s
         '7': 'https://listen.181fm.com/181-oldschool_128k.mp3', // classic hip hop
         '8': 'https://strm112.1.fm/latino_mobile_mp3', // modern spanish
-        '9': 'https://radio.metal-invasion.fr/radio/8000/stream.mp3', // death metal
+        '9': 'https://s6-webradio.rockantenne.de/heavy-metal/stream/mp3', // heavy metal
         '10': 'https://mp3channels.webradio.antenne.de/punkrock', // "crazy taxi"-ish
         '11': 'https://jazzradio.ice.infomaniak.ch/jazz-wr04-128.mp3', // electroswing
 };
