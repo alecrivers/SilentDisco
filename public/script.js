@@ -5,7 +5,7 @@ var streamUrls = {
         //'3': 'https://media.xseu.net:5443/MegaHit_m',	// Next try at hits.
         '3': 'https://rfcmedia.streamguys1.com/newpophits.mp3', // Frome TuneIn. Pop Hits.
         '4': 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',	// funk
-        '5': 'https://broadcast.miami/proxy/thediscopalace?mp=/stream/', // disco, I hope?
+        '5': 'https://tunein-music.streamguys1.com/JACKFM-direct', // classic hits
         '6': 'https://ors.cdnstream1.com/5214_128', // 80s
         '7': 'https://listen.181fm.com/181-oldschool_128k.mp3', // classic hip hop
         '8': 'https://strm112.1.fm/latino_mobile_mp3', // modern spanish
@@ -140,3 +140,52 @@ function changeChannel() {
     document.body.style.backgroundColor = colors[currentChannel];
 }
 
+// Wake lock stuff
+let wakeLock = null;
+
+// Function that attempts to request a screen wake lock
+const requestWakeLock = async () => {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    console.log('Screen Wake Lock is active');
+  } catch (err) {
+    console.error(`Could not establish a wake lock (${err.name}: ${err.message})`);
+  }
+}
+
+// Function to release the wake lock
+const releaseWakeLock = () => {
+  if (wakeLock !== null) {
+    wakeLock.release()
+    .then(() => {
+      console.log('Screen Wake Lock was released');
+      wakeLock = null;
+    })
+    .catch((err) => {
+      console.error(`An error occurred while releasing the wake lock (${err.name}: ${err.message})`);
+    });
+  }
+}
+
+// Request a wake lock when the page loads
+window.addEventListener('load', () => {
+  if ('wakeLock' in navigator) {
+    requestWakeLock();
+  }
+  else {
+    console.log("Wake lock not supported :(");
+    console.log(JSON.stringify(navigator));
+  }
+});
+
+// Release the wake lock when the page is unloaded
+window.addEventListener('unload', () => {
+  releaseWakeLock();
+});
+
+// Reacquire the lock when the visibility of the page changes
+document.addEventListener('visibilitychange', () => {
+  if ('wakeLock' in navigator && document.visibilityState === 'visible') {
+    requestWakeLock();
+  }
+});
