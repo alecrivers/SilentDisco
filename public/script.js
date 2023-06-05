@@ -1,49 +1,109 @@
-// Define the radio stream URLs for each channel
-var streamUrls = {
-        '1': 'https://eu10.fastcast4u.com:2650/stream/1/',	// b&c, mellow
-        '2': 'https://streams.radiomast.io:443/0cef93cd-5974-43b1-868e-c739e81f4f2b',	// b&c, strong
-        //'3': 'https://media.xseu.net:5443/MegaHit_m',	// Next try at hits.
-        '3': 'https://rfcmedia.streamguys1.com/newpophits.mp3', // Frome TuneIn. Pop Hits.
-        '4': 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',	// funk
-        '5': 'https://tunein-music.streamguys1.com/JACKFM-direct', // classic hits
-        '6': 'https://ors.cdnstream1.com/5214_128', // 80s
-        '7': 'https://listen.181fm.com/181-oldschool_128k.mp3', // classic hip hop
-        '8': 'https://strm112.1.fm/latino_mobile_mp3', // modern spanish
-        '9': 'https://s6-webradio.rockantenne.de/heavy-metal/stream/mp3', // heavy metal
-        '10': 'https://mp3channels.webradio.antenne.de/punkrock', // "crazy taxi"-ish
-        '11': 'https://jazzradio.ice.infomaniak.ch/jazz-wr04-128.mp3', // electroswing
-};
+var stations = [
+  {
+    // b&c, mellow
+    "stream": 'https://eu10.fastcast4u.com:2650/stream/1/',
+    "icon": "noun-vinyl-4463482.svg",
+    "audio": "turntable.mp3",
+    "background-color": "#bfef45",		// lime
+    "icon-color": "#3b6e00" // dark lime
+  },
+  {
+    // b&c, strong	robot
+    "stream": 'https://streams.radiomast.io:443/0cef93cd-5974-43b1-868e-c739e81f4f2b',
+    "icon": "noun-robot-1004193.svg",
+    "audio": "robot.mp3",
+    "background-color": "red",
+    "icon-color": "#ff9999" // light red
+  },
+  {
+    // Frome TuneIn. Pop Hits.	star with music
+    "stream": 'https://rfcmedia.streamguys1.com/newpophits.mp3',
+    "icon": "noun-stars-1171664.svg",
+    "audio": "stars.mp3",
+    "background-color": "#12748a",		// cyan
+    "icon-color": "#42d4f4" // dark cyan
+  },
+  {
+    // funk	disco ball
+    "stream": 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',
+    "icon": "noun-disco-5301484.svg",
+    "audio": "mirror_ball.mp3",
+    "background-color": "#f04a00",		// orange
+    "icon-color": "#ff8c33" // light orange
+  },
+  {
+    // classic hits	cassette
+    "stream": 'https://tunein-music.streamguys1.com/JACKFM-direct',
+    "icon": "noun-cassette-1134380.svg",
+    "audio": "cassette.mp3",
+    "background-color": "#fffac8",		// yellow / beige
+    "icon-color": "#7f6b00" // dark yellow
+  },
+  {
+    // 80s	rubik's cube
+    "stream": 'https://ors.cdnstream1.com/5214_128',
+    "icon": "noun-rubiks-cube-571725.svg",
+    "audio": "rubiks_cube.mp3",
+    "background-color": "#800000",		// maroon
+    "icon-color": "#ff8080" // light maroon
+  },
+  {
+    // classic hip hop		boom box
+    "stream": 'https://listen.181fm.com/181-oldschool_128k.mp3',
+    "icon": "noun-boom-box-4888853.svg",
+    "audio": "boombox.mp3",
+    "background-color": "#000075",		// navy
+    "icon-color": "#7373ff" // light navy
+  },
+  {
+    // modern spanish	tequila
+    "stream": 'https://strm112.1.fm/latino_mobile_mp3',
+    "icon": "noun-tequila-4764344.svg",
+    "audio": "tequila.mp3",
+    "background-color": "#911eb4",		// purple
+    "icon-color": "#d69cf0" // light purple
+  },
+  {
+    // heavy metal	pirate flag
+    "stream": 'https://s6-webradio.rockantenne.de/heavy-metal/stream/mp3',
+    "icon": "noun-pirate-flag-787807.svg",
+    "audio": "jolly_roger.mp3",
+    "background-color": "#000000",		// black
+    "icon-color": "#ffffff" // white
+  },
+  {
+    // electroswing	gramophone
+    "stream": 'https://jazzradio.ice.infomaniak.ch/jazz-wr04-128.mp3',
+    "icon": "noun-gramophone-3243255.svg",
+    "audio": "gramophone.mp3",
+    "background-color": "#f032e6",		// pink
+    "icon-color": "#b30086" // dark pink
+  }
+];
 
-// Define the background colors for each channel
-var colors = {
-    '0': 'white',
-    '1': '#bfef45',	// lime
-    '2': 'red',		// red
-    '3': '#42d4f4',	// cyan,
-    '4': '#f04a00',	// orange
-    '5': '#fffac8',	// yellow / beige
-    '6': '#800000',	// maroon
-    '7': '#000075', 	// navy
-    '8': '#911eb4', 	// purple
-    '9': '#000000',	// black
-    '10': '#a9a9a9',	// gray
-    '11': '#f032e6',	// pink
-};
+  /*
+  {
+    // "crazy taxi"-ish	taxi
+    "stream": 'https://mp3channels.webradio.antenne.de/punkrock',
+    "icon": "noun-taxi-10379.svg",
+    "audio": "taxi.mp3",
+    "background-color": "#a9a9a9",		// gray
+    "icon-color": "#4d4d4d" // dark gray
+  },
+  */
+  
+// Done
 
-// Define the players for each channel
-var players = {
-};
-
-var fadeStates = {
-    '0': 1.0	// The landing page fade state
-};
-
-// Initialize the current channel to 1
-var currentChannel = '0';
-var numChannels = Object.keys(streamUrls).length;
-// Define a step for fading (e.g. over 1 second)
-var fadeStep = 0.2;
+var currentChannel = undefined; // undefined indicates intro page
+var numChannels = stations.length;
 var initialized = false;
+var fadeInterval = 20;    // In ms
+let introFade = 1.0;
+var fadeTime = 0.85; // In seconds
+let fadeStep = (fadeInterval / 1000.0) / fadeTime;
+console.log("Fade step: " + fadeStep);
+
+let audio = new Audio();
 
 function startDisco() {
     // Hide the landing page content
@@ -52,44 +112,52 @@ function startDisco() {
     if(initialized == false) {
 	    console.log("Initializing...");
 	    
+	    let pageContainer = document.getElementById("page-container");
+	    
 	    // Create variables
-	    for (let i = 1; i <= numChannels; i++) {
-	    	fadeStates[i.toString()] = -1;
-	    	players[i.toString()] = null;
-	    }
-	    
-	    // Show the player
-	    document.getElementById('player').style.display = 'block';
-	    
-	    // Get the player div
-	    var playerDiv = document.getElementById('player');
-
-	    // For each channel, create an audio element for the radio player and add it to the player div
-	    for (var channel in streamUrls) {
-		var playerAudio = document.createElement('audio');
-		playerAudio.setAttribute('src', streamUrls[channel]);
-		playerAudio.setAttribute('controls', '');
-		playerAudio.setAttribute('autoplay', '');
-		playerAudio.style.display = 'none';  // This hides the audio player
-		playerAudio.volume = 0;
-		playerDiv.appendChild(playerAudio);
-		players[channel] = playerAudio;
-	    }
+	    for (let i = 0; i < numChannels; i++) {
+	        let station = stations[i];
+	        station["fade"] = 0;
+	        
+	        // Create page
+            let page = document.createElement('div');
+            page.style.backgroundColor = station["background-color"];
+            station["page"] = page;
+            page.classList.add('page');
+            
+            let img = document.createElement('img');
+            img.classList.add("svg-icon");
+            img.src = "images/" + station["icon"];
+            img.style.color = station["icon-color"];
+            page.appendChild(img);
+            
+            // Create player
+            var playerAudio = document.createElement('audio');
+            station["player"] = playerAudio;
+		    playerAudio.setAttribute('src', station["stream"]);
+		    playerAudio.setAttribute('controls', '');
+		    playerAudio.setAttribute('autoplay', '');
+		    playerAudio.style.display = 'none';  // This hides the audio player
+		    playerAudio.volume = 0;
+		    page.appendChild(playerAudio);
+		    
+		    // Add page
+		    page.style.display = "none";    // Hide initially
+            pageContainer.appendChild(page);
+        }
     
 	    // Add an event listener to the body that responds to click events
 	    document.body.addEventListener('click', changeChannel);
     
 	    // Start the fade system
-	    setInterval(handleFade, 50);
+	    setInterval(handleFade, fadeInterval);
 	    
 	    initialized = true;
     }
     
-    // Set us to channel 1
-    currentChannel = "1";
-
-    // Set the initial background color
-    document.body.style.backgroundColor = colors[currentChannel];
+    // Set us to the first channel
+    currentChannel = 0;
+    playCurrentChannelName();
 
     // Push a new state to the history
     history.pushState({ page: "disco" }, "", window.location.pathname);
@@ -98,46 +166,60 @@ function startDisco() {
 // When the history changes...
 window.addEventListener("popstate", function(event) {
     // For now assume we're going back to the main state.
-    currentChannel = "0";
-    document.body.style.backgroundColor = colors[currentChannel];
+    currentChannel = undefined;
 });
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
+function playCurrentChannelName() {
+    // If a sound is playing, stop it
+    if (!audio.paused) {
+        audio.pause();
+        // To ensure the sound starts from the beginning when played again
+        audio.currentTime = 0;
+    }
+
+    // Load the next sound
+    audio.src = "audio/" + stations[currentChannel]["audio"];
+    console.log("Playing " + audio.src);
+    audio.play();
+}
+
 function handleFade() {
-   let status = '';
-   for (let i = 0; i <= numChannels; i++) {
-        if(i.toString() == currentChannel)
-            fadeStates[i] = Math.min(fadeStates[i] + fadeStep, 1.0);
+    let status = '';
+   
+    // Handle intro page specially
+    if(currentChannel == undefined)
+        introFade = Math.min(introFade + fadeStep, 1.0);
+    else
+        introFade = Math.max(introFade - fadeStep, 0);
+    document.getElementById('landing-page').style.opacity = introFade;
+    document.getElementById('landing-page').style.display = (introFade > 0) ? "block" : "none";
+
+    // Now the station pages   
+    for (let i = 0; i < numChannels; i++) {
+        let station = stations[i];
+        if(i == currentChannel)
+            station["fade"] = Math.min(station["fade"] + fadeStep, 1.0);
         else
-            fadeStates[i] = Math.max(fadeStates[i] - fadeStep, -1.1);
-        if(i == 0) {
-            let opacity = clamp(fadeStates[i], 0.0, 1.0);
-            document.getElementById('landing-page').style.opacity = opacity;
-            document.getElementById('landing-page').style.display = (opacity > 0) ? "block" : "none";
-        }
-        else {
-            let player = players[i];
-            player.volume = clamp(fadeStates[i], 0.0, 1.0);
-            //status += i + ": " + fadeStates[i] + " ~ " + player.volume + "   "
-        }
+            station["fade"] = Math.max(station["fade"] - fadeStep, 0);
+        station["page"].style.opacity = station["fade"]
+        station["page"].style.display = (station["fade"] > 0) ? "flex" : "none";
+        station["player"].volume = clamp((station["fade"] - 0.8) * 2.5, 0.0, 0.5);
+        //status += i + ": " + station["fade"] + " ~ " + station["player"].volume + "   "
     }
     //console.log(status);
 }
 
 function changeChannel() {
-    if(fadeStates['0'] != -1.1) {
+    if(introFade > 0) {
         console.log("Click while still fading into the player; ignoring.");
         return;
     }
 
-    // Increment the current channel, then use modulo to wrap back to 1 after 3
-    currentChannel = ((currentChannel % numChannels) + 1).toString();
-    
+    currentChannel = ((currentChannel + 1) % numChannels);
+    playCurrentChannelName();
     console.log("Changed channel to " + currentChannel);
-
-    // Change the background color
-    document.body.style.backgroundColor = colors[currentChannel];
 }
 
 // Wake lock stuff

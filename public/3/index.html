@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button id="next">Play Next</button>
+
+<script>
+    let audio = new Audio();
+    let audioIndex = 0;
+    let audioList = [
+        '../audio/turntable.mp3',
+        '../audio/robot.mp3',
+        // Add more audio URLs here
+    ];
+
+    document.getElementById('next').addEventListener('click', function() {
+        // If a sound is playing, stop it
+        if (!audio.paused) {
+            audio.pause();
+            // To ensure the sound starts from the beginning when played again
+            audio.currentTime = 0;
+        }
+
+        // Load the next sound
+        audio.src = audioList[audioIndex];
+        audio.play();
+
+        // Move to the next index, go back to 0 if we're at the end
+        audioIndex = (audioIndex + 1) % audioList.length;
+    });
+</script>
+
+</body>
+</html>
+

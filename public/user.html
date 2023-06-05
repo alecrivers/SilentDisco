@@ -10,18 +10,20 @@
         <img id="logo" src="images/logo.svg">
         <ul id="instructions">
 	       	<li>Click anywhere to change the channel!</li>
-		<li>Anyone else who is on the same channel will hear the same music you're listening to!</li>
-		<li>Use the QR code below to invite friends!</li>
-	<p>
-        <div class="button-container">
-	    <span role="img" aria-label="Woman Dancing">💃</span>
-	    <button class="start-button" onclick="startDisco()">Dance!</button>
-	    <span role="img" aria-label="Man Dancing">🕺</span>
-	</div>
+		    <li>Anyone else who is on the same channel will hear the same music you're listening to!</li>
+		    <li>Use the QR code below to invite friends!</li>
+	    </ul>
+	    <div class="button-container">
+	        <span role="img" aria-label="Woman Dancing">💃</span>
+	        <button class="start-button" onclick="startDisco()">Dance!</button>
+	        <span role="img" aria-label="Man Dancing">🕺</span>
+	    </div>
         <img id="qr-code" src="images/qrcode.png" alt="QR code">
     </div>
-    <div id="svg-container" class="svg-container"/>
-    <div id="player" style="display: none;"/>
+    <div id="page-container">
+<!--    <div class="page">Hello, world!</div>-->
+        <!-- content will be dynamically inserted here -->
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
