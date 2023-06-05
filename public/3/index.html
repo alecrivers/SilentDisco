@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
 <body>
+    <button id="playButton">Play Streams</button>
 
-<button id="next">Play Next</button>
+    <script>
+        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        var audioElements = [];
+        var sources = [];
+        var gainNodes = [];
 
-<script>
-    let audio = new Audio();
-    let audioIndex = 0;
-    let audioList = [
-        '../audio/turntable.mp3',
-        '../audio/robot.mp3',
-        // Add more audio URLs here
-    ];
+        var urls = [
+            'https://eu10.fastcast4u.com:2650/stream/1/',
+            'https://streams.radiomast.io:443/0cef93cd-5974-43b1-868e-c739e81f4f2b'
+        ];
 
-    document.getElementById('next').addEventListener('click', function() {
-        // If a sound is playing, stop it
-        if (!audio.paused) {
-            audio.pause();
-            // To ensure the sound starts from the beginning when played again
-            audio.currentTime = 0;
+        for (var i = 0; i < urls.length; i++) {
+            var audioElement = new Audio();
+            audioElement.src = urls[i];
+
+            var source = audioContext.createMediaElementSource(audioElement);
+            var gainNode = audioContext.createGain();
+
+            // Connect the source to the gain node and the gain node to the destination
+            source.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            // Store the audio element, source, and gain node
+            audioElements.push(audioElement);
+            sources.push(source);
+            gainNodes.push(gainNode);
         }
 
-        // Load the next sound
-        audio.src = audioList[audioIndex];
-        audio.play();
+        document.getElementById('playButton').addEventListener('click', function() {
+            // User interaction is required to start the AudioContext due to autoplay policies in some browsers
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
 
-        // Move to the next index, go back to 0 if we're at the end
-        audioIndex = (audioIndex + 1) % audioList.length;
-    });
-</script>
+            for (var i = 0; i < audioElements.length; i++) {
+                // Set the volume
+                gainNodes[i].gain.value = 0.5; // 50% volume
 
+                // Play the audio
+                audioElements[i].play();
+            }
+        });
+    </script>
 </body>
 </html>
 
