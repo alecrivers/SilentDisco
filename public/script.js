@@ -28,7 +28,7 @@ var stations = [
   },
   {
     // funk	disco ball
-    "stream": 'https://radio4.cdm-radio.com:18008/stream-mp3-Funk',
+    "stream": 'https://panel.retrolandigital.com/listen/70s_disco_nights/listen',
     "icon": "noun-disco-5301484.svg",
     "name_audio": "mirror_ball.mp3",
     "background-color": "#f04a00",		// orange
