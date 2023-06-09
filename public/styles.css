@@ -45,6 +45,11 @@ body {
     padding: 20px;
 }
 
+#landing-page {
+    -webkit-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
+}
+
 button {
     padding: 10px 20px;
     font-size: 20px;
@@ -85,6 +90,8 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    -webkit-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
 }
 
 .svg-icon {

@@ -160,6 +160,16 @@ function nextChannel(channel) {
     return (channel + 1) % numChannels;
 }
 
+function showPage(page) {
+    page.style.opacity = 1;
+    page.style.pointerEvents = 'auto';
+}
+
+function hidePage(page) {
+    page.style.opacity = 0;
+    page.style.pointerEvents = 'none';
+}
+
 // ### STATE MACHINE ###
 
 class State {
@@ -194,7 +204,7 @@ class OnIntroWithStationsUninitializedState extends State {
         history.pushState({ page: "disco" }, "", window.location.pathname);
         
         // Hide intro
-        document.getElementById('landing-page').style.display = "none";
+        hidePage(document.getElementById('landing-page'));
         
         this.transition(new PlayingChannelNameState(this.app, 0));
     }
@@ -204,7 +214,7 @@ class OnIntroWithStationsInitializedState extends State {
     constructor(app) {
         super(app);
         
-        document.getElementById('landing-page').style.display = "block";
+        showPage(document.getElementById('landing-page'));
     }
     
     name() {
@@ -214,7 +224,7 @@ class OnIntroWithStationsInitializedState extends State {
     startDisco() {
         if(this.app.currentState != this) return;    // Handle race conditions
         
-        document.getElementById('landing-page').style.display = "none";
+        hidePage(document.getElementById('landing-page'));
         
         // Push a new state to the history
         history.pushState({ page: "disco" }, "", window.location.pathname);
@@ -228,7 +238,7 @@ class PlayingChannelNameState extends State {
         super(app);
         this.channel = channel;
         
-        stations[this.channel]["page"].style.display = "flex";
+        showPage(stations[this.channel]["page"]);
         
         let ret = playAudio(stations[this.channel]["name_audio"]);
         if(ret == undefined) {
@@ -261,7 +271,7 @@ class PlayingChannelNameState extends State {
         
         this.source.disconnect(audioContext.destination);
         this.source.stop();
-        stations[this.channel]["page"].style.display = "none";
+        hidePage(stations[this.channel]["page"]);
         
         this.transition(new PlayingChannelNameState(this.app, nextChannel(this.channel)));
     }
@@ -271,6 +281,7 @@ class PlayingChannelNameState extends State {
         
         this.source.disconnect(audioContext.destination);
         this.source.stop();
+        hidePage(stations[this.channel]["page"]);
         
         this.transition(new OnIntroWithStationsInitializedState(this.app));
     }
@@ -294,7 +305,7 @@ class PlayingChannelState extends State {
         
         stations[this.channel]["source"].disconnect(audioContext.destination);
         stations[this.channel]["audio"].muted = true;  // iOS doesn't seem to respect the takeover of the audio element... I have no idea why.
-        stations[this.channel]["page"].style.display = "none";
+        hidePage(stations[this.channel]["page"]);
         
         this.transition(new PlayingChannelNameState(this.app, nextChannel(this.channel)));
     }
@@ -304,7 +315,7 @@ class PlayingChannelState extends State {
         
         stations[this.channel]["source"].disconnect(audioContext.destination);
         stations[this.channel]["audio"].muted = true;  // iOS doesn't seem to respect the takeover of the audio element... I have no idea why.
-        stations[this.channel]["page"].style.display = "none";
+        hidePage(stations[this.channel]["page"]);
         
         this.transition(new OnIntroWithStationsInitializedState(this.app));
     }
@@ -332,7 +343,9 @@ class App {
             let page = document.createElement('div');
             pageContainer.appendChild(page);
             page.style.backgroundColor = station["background-color"];
-            page.style.display = "none";
+            page.style.display = "flex";
+            page.style.opacity = 0;
+            page.style.pointerEvents = 'none';
             page.addEventListener('click', () => { this.currentState.changeChannel(); });
             station["page"] = page;
             page.classList.add('page');
