@@ -9,6 +9,8 @@ body {
     padding: 0 20px;
     box-sizing: border-box;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 #logo {
@@ -62,6 +64,10 @@ body {
     gap: 10px; /* creates a 10px gap between items */
 }
 
+#text-container {
+    z-index: 9999;
+}
+
 .start-button {
     font-size: 1.0em;
     padding: 10px;
@@ -78,11 +84,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .svg-icon {
     width: 400px; /* Adjust based on your needs */
     height: 400px; /* Adjust based on your needs */
+    pointer-events: none;
 }
 
 /* Increase the font size and the button size on screens smaller than 600px */
