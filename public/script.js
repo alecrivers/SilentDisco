@@ -30,17 +30,9 @@ var stations = [
     // funk	disco ball
     "stream": 'https://panel.retrolandigital.com/listen/70s_disco_nights/listen',
     "icon": "noun-disco-5301484.svg",
-    "name_audio": "mirror_ball.mp3",
+    "name_audio": "disco_ball.mp3",
     "background-color": "#f04a00",		// orange
     "icon-color": "#ff8c33" // light orange
-  },
-  {
-    // classic hits	cassette
-    "stream": 'https://tunein-music.streamguys1.com/JACKFM-direct',
-    "icon": "noun-cassette-1134380.svg",
-    "name_audio": "cassette.mp3",
-    "background-color": "#fffac8",		// yellow / beige
-    "icon-color": "#7f6b00" // dark yellow
   },
   {
     // 80s	rubik's cube
@@ -346,7 +338,6 @@ class App {
             page.style.display = "flex";
             page.style.opacity = 0;
             page.style.pointerEvents = 'none';
-            page.addEventListener('click', () => { this.currentState.changeChannel(); });
             station["page"] = page;
             page.classList.add('page');
             
@@ -355,6 +346,11 @@ class App {
             img.src = "images/" + station["icon"];
             img.style.color = station["icon-color"];
             page.appendChild(img);
+            
+            let clickArea = document.createElement('div');
+            clickArea.classList.add("click-area");
+            clickArea.addEventListener('click', () => { this.currentState.changeChannel(); });
+            page.appendChild(clickArea);
             
             // Create player
             var audioElement = new Audio();

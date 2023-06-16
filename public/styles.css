@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: calc(100vh - 100px); /* Adjust 60px based on your navbar size */
     padding: 0 20px;
     box-sizing: border-box;
     text-align: center;
@@ -15,6 +15,7 @@ body {
 
 #logo {
     width: 500px; /* Adjust this value as needed for desktop */
+    padding-top: 20px;
 }
 
 #instructions ul {
@@ -25,11 +26,13 @@ body {
 #instructions li {
     display: flex;
     align-items: flex-start;
+    padding: 2px;
 }
 
 #instructions li::before {
     content: "➪ ";
     color: magenta;
+    
     margin-right: 0.5em; /* adjust as needed */
 }
 
@@ -48,6 +51,14 @@ body {
 #landing-page {
     -webkit-transition: opacity 1s ease-out;
     transition: opacity 1s ease-out;
+}
+
+.click-area {
+    position: fixed;
+    top: 150px; /* 50px from the top of the parent */
+    left: 75px; /* 50px from the left of the parent */
+    right: 75px; /* 50px from the right of the parent */
+    bottom: 150px; /* 50px from the bottom of the parent */
 }
 
 button {
@@ -80,8 +91,12 @@ body {
     color: black;  /* Sets the text color to white */
 }
 
+#page-container {
+    height: 100%;
+}
+
 .page {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
